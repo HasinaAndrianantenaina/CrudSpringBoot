@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Index Page</title>
+</head>	
+<body>
+	<h1>New EMployee Form</h1>
+	<br/>
+	<form th:object="${employee}" th:action="@{/save_employee}" method="post">
+		<tr>
+			<td>Firstname :</td>
+			<td> <input type="text" th:field="*{nomEmployee}"/> </td>
+		</tr><br/>
+		<tr>
+			<td>Lastname :</td>
+			<td> <input type="text" th:field="*{prenomEmployee}"/> </td>
+		</tr><br/>
+		<tr>
+			<td> Sex : </td>
+				<td>
+					<input type="radio" th:field="*{gender}" value="1" /> Male
+					<input type="radio" th:field="*{gender}" value="0" /> femelle 
+				</td>
+		</tr>
+		<tr>
+			<td><button type="submit">Inserer</button></td>
+		</tr>
+		<tr>
+			<td> 
+				<select th:field ="*{communeId}">
+					<option th:each="commune : ${communes}" th:value="${commune.idCommune}" th:text="${commune.nomCommune}" />
+				</select>
+			</td>
+		</tr>
+		<!--  
+			Mode select
+			<tr>
+				<input type="radio" th:field="*{gender}" value="Male" /> Male
+				<input type="radio" th:field="*{gender}" value="femelle" /> femelle
+				<input type="checkbox" th:field="*{married}" th:value="1" />
+				<td> addresse: </td>
+				<td> 
+					<select th:fiel ="*{nomCOmmune}">
+						<option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" />
+					</select>
+				</td>
+			</tr>
+		 -->
+	</form>
+</body>
+</html>

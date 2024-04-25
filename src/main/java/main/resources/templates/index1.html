@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Index Page</title>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>	
+
+<body>
+
+	<h2><a href="new_add"> Add Employee</a></h2>
+	<br/>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>Id </td>
+				<td>Firstname </td>
+				<td>Lastname </td>
+				<td>Sexe</td>
+				<td>Residence</td>
+				<td>Edit </td>
+				<td>Delete </td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="employee : ${getAllEmployee}">
+				<td th:text = ${employee.idEmployee}> ID</td>
+				<td th:text = ${employee.nomEmployee}> Firstname</td>
+				<td th:text = ${employee.prenomEmployee}> Lastname</td>
+				<td th:text = ${employee.sGender}> Sexe</td>
+				<td th:text = ${employee.nomCommune}>Residence</td>
+				<script th:inline="javascript">	/*var nameJs = /*[[ ${employee.nomEmployee}]]*/</script>
+				<td> <a th:href="@{'/edit/' + ${employee.idEmployee}}"> Edit</a></td> 				
+				<!-- <td> <a th:href="@{'/delete/' + ${employee.idEmployee}}"> Delete</a></td>-->
+				<td><button type="button" th:onclick="confirmation(nameJs)">delete</button></td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<button type="button" th:onclick="showAlert()">Show Alert</button>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Index Page</title>
+</head>	
+<body>
+	<h1>New EMployee Form</h1>
+	<br/>
+	<form th:object="${employee}" th:action="@{/update_employee}" method="post">
+		<tr>
+			<td>Id :</td>
+			<td> <input type="text" th:field="*{idEmployee}" readonly="readonly"/> </td>
+		</tr><br/>
+		<tr>
+			<td>Firstname :</td>
+			<td> <input type="text" th:field="*{nomEmployee}"/> </td>
+		</tr><br/>
+		<tr>
+			<td>Lastname :</td>
+			<td> <input type="text" th:field="*{prenomEmployee}"/> </td>
+		</tr><br/>
+		<tr>
+			<td> Sex : </td>
+				<td>
+					<input type="radio" th:field="*{gender}" value="1" /> Male
+					<input type="radio" th:field="*{gender}" value="0" /> femelle 
+				</td>
+		</tr>
+		<tr>
+			<td> 
+				<select th:field ="*{communeId}">
+				    <option th:value="*{communeId}" th:text="*{nomCommune}"></option>
+					<option th:each="commune : ${communes}" th:value="${commune.idCommune}" th:text="${commune.nomCommune}" />
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><button type="submit">Update</button></td>
+		</tr>
+	</form>
+</body>
+</html>
